@@ -1,0 +1,12 @@
+package wiz
+
+# NativeType is EC2
+# Fail unless Key equals XXX and Value starts with YYY --> any case 
+
+default result = "fail"
+
+result = "pass" {
+	tag := input.Tags[i].Key
+	upper(tag) == "XXX"
+	startswith(upper(input.Tags[i].Value),"YYY")
+}
