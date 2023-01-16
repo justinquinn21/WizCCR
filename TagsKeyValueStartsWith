@@ -2,6 +2,7 @@ package wiz
 
 # NativeType is EC2
 # Fail unless Key equals XXX and Value starts with YYY --> any case 
+# This is a Test
 
 default result = "fail"
 
