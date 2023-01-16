@@ -1,0 +1,14 @@
+package wiz
+
+default result = "pass"
+
+result = "fail" {
+	input.Statement[i].Action == "s3:*"
+	input.Statement[i].Effect == "Allow"
+	input.Statement[i].Resource == "*"
+}
+{
+	input.Statement[i].Action[p] == "s3:*"
+	input.Statement[i].Effect == "Allow"
+	input.Statement[i].Resource == "*"
+}
