@@ -1,0 +1,19 @@
+package wiz
+
+default result = "pass"
+
+unmarshalledAssumeRolePolicyDocument := json.unmarshal(input.AssumeRolePolicyDocument)
+
+result = "fail"
+{
+contains(unmarshalledAssumeRolePolicyDocument.Statement[i].Principal.Federated, "ge-saml-for-aws")
+not contains(unmarshalledAssumeRolePolicyDocument.Statement[i].Principal.Federated, "ge-saml-for-aws-mfa")
+}
+{
+contains(unmarshalledAssumeRolePolicyDocument.Statement[i].Principal.Federated, "ge-saml-for-aws")
+contains(unmarshalledAssumeRolePolicyDocument.Statement[i].Principal.Federated, "ge-saml-for-aws-mfa-conditional")
+}
+{
+contains(unmarshalledAssumeRolePolicyDocument.Statement[i].Principal.Federated, "ge-staging-v2")
+not contains(unmarshalledAssumeRolePolicyDocument.Statement[i].Principal.Federated, "ge-staging-v2-mfa")
+}
