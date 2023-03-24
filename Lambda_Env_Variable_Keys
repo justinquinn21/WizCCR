@@ -1,0 +1,21 @@
+package wiz
+
+default result = "pass"
+
+result = "fail" {
+    some key
+  	val := input.Environment.Variables[key]
+  	contains(key, "pw")
+}
+
+result = "fail" {
+	some key
+  	val := input.Environment.Variables[key]
+    contains(key, "password")
+}
+
+result = "fail" {
+	some key
+  	val := input.Environment.Variables[key]
+    contains(key, "secret")
+}
